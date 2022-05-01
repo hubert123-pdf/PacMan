@@ -1,18 +1,14 @@
-
 package src;
 
-import src.scenes.FirstScene;
-import src.scenes.SecondScene;
+import java.io.IOException;
 
 class Main
 {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException
+    {
 
-        FirstScene firstScene = new FirstScene();
-        SecondScene secondScene = new SecondScene();
-
+        Scene secondScene = new Scene();
         secondScene.setScene();
-        Thread.sleep(10);
-        firstScene.setScene();
+       // secondScene.startGame();
     }
 }
