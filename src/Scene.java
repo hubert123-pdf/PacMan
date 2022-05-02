@@ -1,6 +1,7 @@
 package src;
 import resources.GameConsts;
 import resources.Colors;
+import src.ghosts.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Scene extends GameConsts implements ActionListener
 {
@@ -17,80 +19,46 @@ public class Scene extends GameConsts implements ActionListener
     private JPanel scorePanel;
     private JLabel scoreLabel;
     private Player player;
+    private Blinky blinky;
+    private Clyde clyde;
+    private Inky inky;
+    private Pinky pinky;
     private Timer timer;
-    private int score;        
+    private int score;     
+    private int lives = 3;
+   
     private boolean isRunning;
     private char direction;
 
-    public void setScene() throws IOException
+    public void setScene() 
     {
         isRunning = false;
-        player = new Player(BLOCK_SIZE);
         setPanels();
     }
 
-    private void startGame()
+    private void startGame()throws IOException
     {
         isRunning = true;
         direction = 'R';
         timer = new Timer(DELAY, this);
+        player = new Player();
+        blinky = new Blinky();
+        clyde = new Clyde();
+        inky = new Inky();
+        pinky = new Pinky();
         timer.start();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) 
+    public boolean checkCollision()
     {
-        if(isRunning)
-        {
-            move();
-            mainPanel.repaint();
-        }
-        else
-        {
-
-        }
-    }
-
-    private void move()
-    {
-        switch (direction) {
-            case 'U':
-                if(MAP[player.getPositionY() - 1][player.getPositionX()] == 1)
-                {
-                    player.setPositionY(player.getPositionY() - 1);
-                }
-                break;
-
-            case 'D':
-                if(MAP[player.getPositionY() + 1][player.getPositionX()] == 1)
-                {
-                    player.setPositionY(player.getPositionY() + 1);
-                }
-                break;
-
-            case 'L':
-                if(MAP[player.getPositionY()][player.getPositionX() - 1] == 1)
-                {
-                    player.setPositionX(player.getPositionX() - 1);
-                }
-                break;
-
-            case 'R':
-                if(MAP[player.getPositionY()][player.getPositionX() + 1] == 1)
-                {
-                    player.setPositionX(player.getPositionX() + 1);
-                }
-                break;
-
-            default:
-                break;
-        }
-        if(POINTS_LOCATION[player.getPositionY()][player.getPositionX()] == 1)
-        {
-            score++;
-            POINTS_LOCATION[player.getPositionY()][player.getPositionX()] = 0;
-            scoreLabel.setText("Score: " + Integer.toString(score));
-        }
+        if(player.getPositionX() == blinky.getPositionX() && player.getPositionY() == blinky.getPositionY()
+        || player.getPositionX() == clyde.getPositionX() && player.getPositionY() == clyde.getPositionY()
+        || player.getPositionX() == inky.getPositionX() && player.getPositionY() == inky.getPositionY()
+        || player.getPositionX() == pinky.getPositionX() && player.getPositionY() == pinky.getPositionY())
+            {
+                return true;
+            }
+        return false;
     }
 
     private void setPanels()
@@ -118,14 +86,45 @@ public class Scene extends GameConsts implements ActionListener
         frame.setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        if(isRunning)
+        {
+            player.move(direction);
+            blinky.move(player.getPositionX(),player.getPositionY());
+            pinky.move(player.getPositionX(),player.getPositionY());
+            if(POINTS_LOCATION[player.getPositionY()][player.getPositionX()] == 1)
+            {
+                score++;
+                POINTS_LOCATION[player.getPositionY()][player.getPositionX()] = 0;
+                scoreLabel.setText("Score: " + Integer.toString(score));
+            }
+            if(checkCollision())
+            {
+                score = 0;
+                isRunning = false;
+                GameConsts.DELAY = Integer.MAX_VALUE;
+                POINTS_LOCATION = Arrays.stream(MAP).map(int[]::clone).toArray(int[][]::new);
+            }
+            mainPanel.repaint();
+        }
+    }
+
     private class MyKeyAdapter extends KeyAdapter
     {
         @Override public void keyPressed(KeyEvent e)
         {
             if(!isRunning && e.getKeyChar() == ' ')
             {
-                startGame();
-                System.out.println(e.getKeyChar());
+                try 
+                {
+                    startGame();
+                } 
+                catch (IOException e1) 
+                {
+                    e1.printStackTrace();
+                }
             }
             else if(isRunning)
             {
@@ -187,6 +186,11 @@ public class Scene extends GameConsts implements ActionListener
                     }
                 }
                 graphics.drawImage(player.getImage(), player.getPositionX() * BLOCK_SIZE, player.getPositionY() * BLOCK_SIZE, this);
+                graphics.drawImage(blinky.getImage(), blinky.getPositionX() * BLOCK_SIZE, blinky.getPositionY() * BLOCK_SIZE, this);
+                graphics.drawImage(clyde.getImage(), clyde.getPositionX() * BLOCK_SIZE, clyde.getPositionY() * BLOCK_SIZE, this);
+                graphics.drawImage(inky.getImage(), inky.getPositionX() * BLOCK_SIZE, inky.getPositionY() * BLOCK_SIZE, this);
+                graphics.drawImage(pinky.getImage(), pinky.getPositionX() * BLOCK_SIZE, pinky.getPositionY() * BLOCK_SIZE, this);
+
             }
         }
     }
