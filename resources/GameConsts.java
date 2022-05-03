@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class GameConsts {
     public final static int  BLOCK_SIZE = 25;
+    public final static int  LIVES = 3;
     public final static int NUM_OF_BLOCKS_X = 28;
     public final static int NUM_OF_BLOCKS_Y = 36; 
     public final static Dimension DIMENSION = new Dimension(NUM_OF_BLOCKS_X * BLOCK_SIZE, NUM_OF_BLOCKS_Y * BLOCK_SIZE);

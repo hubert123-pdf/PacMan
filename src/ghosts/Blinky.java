@@ -42,6 +42,11 @@ public class Blinky extends Ghost
         thread.start();
     }   
 
+    private double calculateDistanceToPlayer(int posX, int posY)
+    {
+        return Math.sqrt(Math.pow((posX - playerPositionX), 2) + Math.pow((posY - playerPositionY), 2));   
+    }
+
     private class Threader extends Thread
     {
         @Override
@@ -92,16 +97,12 @@ public class Blinky extends Ghost
                     y--;
                 }
                 retreatMoves++;
-                if(retreatMoves == 3)
+                if(retreatMoves == 1)
                 {
                     chaseOrRetreat = true;
                     retreatMoves = 0;
                 }
             }
         }
-    }
-    private double calculateDistanceToPlayer(int posX, int posY)
-    {
-        return Math.sqrt(Math.pow((posX - playerPositionX), 2) + Math.pow((posY - playerPositionY), 2));   
     }
 }

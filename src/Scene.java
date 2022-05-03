@@ -8,7 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -18,21 +22,36 @@ public class Scene extends GameConsts implements ActionListener
     private MainPanel mainPanel;
     private JPanel scorePanel;
     private JLabel scoreLabel;
+
     private Player player;
     private Blinky blinky;
     private Clyde clyde;
     private Inky inky;
     private Pinky pinky;
     private Timer timer;
-    private int score;     
-    private int lives = 3;
+    private int highestScore;
+    private int score;
+    private int sumScore;     
+    private int lives;
    
     private boolean isRunning;
     private char direction;
 
+    public Scene() throws IOException
+    {
+        sumScore = 0;
+        lives = LIVES;
+        FileReader file = new FileReader("resources/highest_score.txt");
+        BufferedReader buffereReader = new BufferedReader(file); 
+        String line = buffereReader.readLine();
+        highestScore = Integer.parseInt(line);
+        file.close();
+    }
+
     public void setScene() 
     {
         isRunning = false;
+        
         setPanels();
     }
 
@@ -49,7 +68,7 @@ public class Scene extends GameConsts implements ActionListener
         timer.start();
     }
 
-    public boolean checkCollision()
+    private boolean checkCollision()
     {
         if(player.getPositionX() == blinky.getPositionX() && player.getPositionY() == blinky.getPositionY()
         || player.getPositionX() == clyde.getPositionX() && player.getPositionY() == clyde.getPositionY()
@@ -64,9 +83,13 @@ public class Scene extends GameConsts implements ActionListener
     private void setPanels()
     {
         scoreLabel = new JLabel();
-        scoreLabel.setText("Score: " + Integer.toString(score));
+        scoreLabel.setText("<html>Score: " + Integer.toString(score) +
+                           "<br/>Your sum score: " + Integer.toString(sumScore) +
+                           "<br/>Highest score: " + Integer.toString(highestScore) +
+                           "<br/>Lives left: " + Integer.toString(lives) +
+                           "</html>");
         scorePanel = new JPanel();  
-        scorePanel.setPreferredSize(new Dimension(100, 0));
+        scorePanel.setPreferredSize(new Dimension(200, 0));
         scorePanel.setBackground(Colors.SCORE_BOARD);
         scorePanel.add(scoreLabel);
 
@@ -79,7 +102,7 @@ public class Scene extends GameConsts implements ActionListener
         frame.addKeyListener(new MyKeyAdapter());
         frame.setTitle("Pac-Mac");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(DIMENSION.width + 100, DIMENSION.height + NUM_OF_BLOCKS_Y + 3);
+        frame.setSize(DIMENSION.width + 200, DIMENSION.height + NUM_OF_BLOCKS_Y + 3);
         frame.setLayout(new BorderLayout());
         frame.add(scorePanel,BorderLayout.EAST);
         frame.add(mainPanel,BorderLayout.WEST);
@@ -98,14 +121,36 @@ public class Scene extends GameConsts implements ActionListener
             {
                 score++;
                 POINTS_LOCATION[player.getPositionY()][player.getPositionX()] = 0;
-                scoreLabel.setText("Score: " + Integer.toString(score));
+                scoreLabel.setText("<html>Score: " + Integer.toString(score) +
+                           "<br/>Your sum score: " + Integer.toString(sumScore) +
+                           "<br/>Highest score: " + Integer.toString(highestScore) +
+                           "<br/>Lives left: " + Integer.toString(lives) +
+                           "</html>");
             }
             if(checkCollision())
             {
+                sumScore += score; 
                 score = 0;
+                lives--;
                 isRunning = false;
-                GameConsts.DELAY = Integer.MAX_VALUE;
+                DELAY = Integer.MAX_VALUE;
                 POINTS_LOCATION = Arrays.stream(MAP).map(int[]::clone).toArray(int[][]::new);
+                if(lives == 0   && sumScore > highestScore) 
+                {
+                    FileWriter file;
+                    try 
+                    {
+                        file = new FileWriter("resources/highest_score.txt");
+                        file.write(Integer.toString(sumScore));
+                        file.close();
+                    } 
+                    catch (IOException e1)
+                    {
+
+                    }
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+
+                }
             }
             mainPanel.repaint();
         }
