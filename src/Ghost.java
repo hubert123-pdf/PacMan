@@ -3,6 +3,7 @@ package src;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 public abstract class Ghost 
 {
@@ -11,7 +12,7 @@ public abstract class Ghost
     protected int x, y; 
     protected int playerPositionX, playerPositionY;
     protected abstract void paintGhost() throws IOException;
-    public abstract void move(int playerPositionX, int playerPositionY);
+    protected abstract void move(int playerPositionX, int playerPositionY);
     public int getPositionX()
     {
         return x;
@@ -31,12 +32,21 @@ public abstract class Ghost
     {
         this.y = y;
     }
-    public Image getImage()
+    protected Image getImage()
     {
         return resizedGhostImage;
     }
-    public double calculateDistanceToPlayer(int posX, int posY)
+
+    protected double calculateDistanceToPlayer(int posX, int posY)
     {
         return Math.sqrt(Math.pow((posX - playerPositionX), 2) + Math.pow((posY - playerPositionY), 2));   
     }
+
+    protected int getRandomDirection(int min, int max)
+    { 
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
+
+    
 }

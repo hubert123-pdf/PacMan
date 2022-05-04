@@ -16,8 +16,8 @@ public class Pinky extends Ghost
     {
         chaseMoves = 20;
         waitMoves = 5;
-        x = GameConsts.NUM_OF_BLOCKS_X / 2 - 5;
-        y = GameConsts.NUM_OF_BLOCKS_Y / 2 + 4;
+        x = GameConsts.NUM_OF_BLOCKS_X / 2 + 1;
+        y = GameConsts.NUM_OF_BLOCKS_Y / 2 - 5;
         paintGhost();
     }
 
@@ -72,7 +72,6 @@ public class Pinky extends Ghost
                     waitMoves = 5;
                 }
             }
-
         }
     }
 }

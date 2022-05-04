@@ -5,8 +5,6 @@ import resources.GameConsts;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 
@@ -21,8 +19,8 @@ public class Clyde extends Ghost
     {   
         lastMove = 0;
         movesInOneDirection = 3;
-        x = GameConsts.NUM_OF_BLOCKS_X / 2 + 4;
-        y = GameConsts.NUM_OF_BLOCKS_Y / 2 + 4;
+        x = GameConsts.NUM_OF_BLOCKS_X / 2 + 7;
+        y = GameConsts.NUM_OF_BLOCKS_Y / 2 - 11;
         paintGhost();
     }
 
@@ -82,10 +80,5 @@ public class Clyde extends Ghost
                 movesInOneDirection = 3;
             }
         }
-    }
-    private int getRandomDirection(int min, int max)
-    { 
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
     }
 }

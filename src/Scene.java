@@ -232,7 +232,7 @@ public class Scene extends GameConsts implements ActionListener
             }
             else
             {
-                graphics.setColor(Colors.PACMAN);
+                graphics.setColor(Color.YELLOW);
                 for(int i = 0; i < POINTS_LOCATION.length; i++)
                 {
                     for(int j = 0; j < POINTS_LOCATION[i].length; j++)

@@ -9,4 +9,4 @@ class Main
         Scene scene = new Scene();
         scene.setScene();
     }
-}
+} 

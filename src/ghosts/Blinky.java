@@ -19,8 +19,8 @@ public class Blinky extends Ghost
         chaseMoves = 0;
         retreatMoves = 0;
         chaseOrRetreat = true; //chase
-        x = GameConsts.NUM_OF_BLOCKS_X / 2 + 1;
-        y = GameConsts.NUM_OF_BLOCKS_Y / 2 - 4;
+        x = GameConsts.NUM_OF_BLOCKS_X  - 2;
+        y = GameConsts.NUM_OF_BLOCKS_Y  - 2;
         paintGhost();
     }
 
