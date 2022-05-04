@@ -9,6 +9,7 @@ public abstract class Ghost
     protected BufferedImage ghostImage;
     protected Image resizedGhostImage;
     protected int x, y; 
+    protected int playerPositionX, playerPositionY;
     protected abstract void paintGhost() throws IOException;
     public abstract void move(int playerPositionX, int playerPositionY);
     public int getPositionX()
@@ -33,5 +34,9 @@ public abstract class Ghost
     public Image getImage()
     {
         return resizedGhostImage;
+    }
+    public double calculateDistanceToPlayer(int posX, int posY)
+    {
+        return Math.sqrt(Math.pow((posX - playerPositionX), 2) + Math.pow((posY - playerPositionY), 2));   
     }
 }

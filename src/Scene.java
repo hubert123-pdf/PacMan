@@ -2,7 +2,6 @@ package src;
 import resources.GameConsts;
 import resources.Colors;
 import src.ghosts.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,6 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -117,9 +115,12 @@ public class Scene extends GameConsts implements ActionListener
             player.move(direction);
             blinky.move(player.getPositionX(),player.getPositionY());
             pinky.move(player.getPositionX(),player.getPositionY());
+            clyde.move(player.getPositionX(),player.getPositionY());
+            inky.move(player.getPositionX(),player.getPositionY());
             if(POINTS_LOCATION[player.getPositionY()][player.getPositionX()] == 1)
             {
                 score++;
+                sumScore++;
                 POINTS_LOCATION[player.getPositionY()][player.getPositionX()] = 0;
                 scoreLabel.setText("<html>Score: " + Integer.toString(score) +
                            "<br/>Your sum score: " + Integer.toString(sumScore) +
@@ -129,27 +130,28 @@ public class Scene extends GameConsts implements ActionListener
             }
             if(checkCollision())
             {
-                sumScore += score; 
                 score = 0;
                 lives--;
                 isRunning = false;
                 DELAY = Integer.MAX_VALUE;
                 POINTS_LOCATION = Arrays.stream(MAP).map(int[]::clone).toArray(int[][]::new);
-                if(lives == 0   && sumScore > highestScore) 
+                if(lives == 0) 
                 {
-                    FileWriter file;
-                    try 
+                    if(sumScore > highestScore)
                     {
-                        file = new FileWriter("resources/highest_score.txt");
-                        file.write(Integer.toString(sumScore));
-                        file.close();
-                    } 
-                    catch (IOException e1)
-                    {
+                        highestScore = sumScore;
+                        FileWriter file;
+                        try 
+                        {
+                            file = new FileWriter("resources/highest_score.txt");
+                            file.write(Integer.toString(sumScore));
+                            file.close();
+                        } 
+                        catch (IOException e1)
+                        {
 
-                    }
-                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-
+                        }
+                    }                    
                 }
             }
             mainPanel.repaint();
@@ -215,7 +217,18 @@ public class Scene extends GameConsts implements ActionListener
             {
                 graphics.setFont(new Font("Dialog", Font.PLAIN, 40)); 
                 graphics.setColor(Color.WHITE);
-                graphics.drawString("Press space to start...",SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2);
+                if(lives == 0 )
+                {
+                    graphics.drawString("Your score: " + Integer.toString(sumScore),SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 100);
+                    graphics.drawString("Press space to play again...",SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2);
+                    lives = 3;
+                    sumScore = 0;
+                    score = 0;
+                }
+                else
+                {
+                    graphics.drawString("Press space to start new round...",SCREEN_WIDTH / 2 - 320, SCREEN_HEIGHT / 2);
+                }
             }
             else
             {

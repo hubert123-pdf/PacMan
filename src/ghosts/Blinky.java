@@ -11,9 +11,8 @@ import java.awt.*;
 public class Blinky extends Ghost
 {
     private int chaseMoves, retreatMoves;
-    boolean chaseOrRetreat;
+    private boolean chaseOrRetreat;
     private Threader thread;
-    private int playerPositionX, playerPositionY;
 
     public Blinky() throws IOException 
     {
@@ -41,11 +40,6 @@ public class Blinky extends Ghost
         thread = new Threader();
         thread.start();
     }   
-
-    private double calculateDistanceToPlayer(int posX, int posY)
-    {
-        return Math.sqrt(Math.pow((posX - playerPositionX), 2) + Math.pow((posY - playerPositionY), 2));   
-    }
 
     private class Threader extends Thread
     {

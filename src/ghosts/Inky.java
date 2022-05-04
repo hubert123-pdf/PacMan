@@ -25,8 +25,7 @@ public class Inky extends Ghost
     }
     @Override
     public void move(int playerPositionX, int playerPositionY) {
-        // TODO Auto-generated method stub
-        
+         
     }
     
 }
