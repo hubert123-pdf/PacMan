@@ -3,6 +3,9 @@ package resources;
 import java.awt.*;
 import java.util.Arrays;
 
+/**
+ * Class contains static attributes, which are responsible for size of the map, location of the points and game clock speed. 
+ */
 public class GameConsts {
     public final static int  BLOCK_SIZE = 25;
     public final static int  LIVES = 3;

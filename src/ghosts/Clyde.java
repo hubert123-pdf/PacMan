@@ -8,13 +8,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.*;
 
-
+/**
+ * Clyde is a ghost, that randomly moves in a possible direction. 
+ */
 public class Clyde extends Ghost
 {
     private int movesInOneDirection;
     private int lastMove;
     Threader  thread;
 
+    /**
+     * Constructor sets default position and proper image. 
+     * @throws IOException
+     */
     public Clyde() throws IOException 
     {   
         lastMove = 0;
@@ -24,13 +30,19 @@ public class Clyde extends Ghost
         paintGhost();
     }
 
+    /**
+     * Sets proper layout for Clyde.
+     */
     @Override
-    public void paintGhost() throws IOException
+    protected void paintGhost() throws IOException
     {
         ghostImage = ImageIO.read(new File("resources/images/clyde.png"));
         resizedGhostImage = ghostImage.getScaledInstance(GameConsts.BLOCK_SIZE, GameConsts.BLOCK_SIZE, Image.SCALE_DEFAULT);
     }
 
+    /**
+     * This method starts new thread and randomly moves clyde to new position.
+     */
     @Override
     public void move(int playerPositionX, int playerPositionY) 
     {
@@ -40,8 +52,14 @@ public class Clyde extends Ghost
         thread.start();
     }
 
+    /**
+     * . This class inherits from Thread class to allow multithreading in the program. 
+     */
     private class Threader extends Thread
     {
+        /**
+         * This method moves Clyde to the new postion and after few moves the direction is randomly changed.
+         */
         @Override
         public void run()
         {

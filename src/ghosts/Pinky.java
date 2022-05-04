@@ -8,10 +8,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.*;
 
+/**
+ * Pinky is a ghost, that waits for PacMan and attacks, when he comes close to him. 
+ */
 public class Pinky extends Ghost
 {
     private int chaseMoves, waitMoves;
     private Threader thread;
+
+    /**
+     * Constructor sets default position and proper image. 
+     * @throws IOException
+     */
     public Pinky() throws IOException 
     {
         chaseMoves = 20;
@@ -21,13 +29,19 @@ public class Pinky extends Ghost
         paintGhost();
     }
 
+     /**
+     * Sets proper layout for Pinky.
+     */
     @Override
-    public void paintGhost() throws IOException
+    protected void paintGhost() throws IOException
     {
         ghostImage = ImageIO.read(new File("resources/images/pinky.png"));
         resizedGhostImage = ghostImage.getScaledInstance(GameConsts.BLOCK_SIZE, GameConsts.BLOCK_SIZE, Image.SCALE_DEFAULT);
     }
 
+    /**
+     * This method starts new thread and moves Pinky closer to PacMan or makes him wait.
+     */
     @Override
     public void move(int playerPositionX, int playerPositionY) 
     {
@@ -37,8 +51,14 @@ public class Pinky extends Ghost
         thread.start();
     }
 
+    /**
+     * . This class inherits from Thread class to allow multithreading in the program. 
+     */
     private class Threader extends Thread
     {
+        /**
+         * When PacMan comes close to Pinky, he makes constant number of movements, then stops and wait for him to again come closer. 
+         */
         @Override
         public void run()
         {

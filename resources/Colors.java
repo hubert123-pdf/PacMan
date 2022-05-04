@@ -1,7 +1,9 @@
 package resources;
 
 import java.awt.Color;
-
+/**
+ * Class contains static attributes of colors used in GUI.
+ */
 public class Colors {
     public static final Color PACMAN = new Color(253, 255, 0);
     public static final Color BACKGROUND = new Color(0, 0, 0);

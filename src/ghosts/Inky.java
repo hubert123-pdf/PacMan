@@ -8,6 +8,9 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.awt.*;
 
+/**
+ * Inky is a ghost, that randomly copies movement of one of the other ghosts. 
+ */
 public class Inky extends Ghost
 {
     private Threader thread;
@@ -15,6 +18,10 @@ public class Inky extends Ghost
     private int chaseMoves, waitMoves;
     private int movementMoves;
 
+    /**
+     * Constructor sets default position and proper image. 
+     * @throws IOException
+     */
     public Inky() throws IOException 
     {
         movementMoves = 30;
@@ -27,12 +34,20 @@ public class Inky extends Ghost
         y = GameConsts.NUM_OF_BLOCKS_Y / 2 + 5;
         paintGhost();
     }
+
+    /**
+     * Sets proper layout for Inky.
+     */
     @Override
-    public void paintGhost() throws IOException
+    protected void paintGhost() throws IOException
     {
         ghostImage = ImageIO.read(new File("resources/images/inky.png"));
         resizedGhostImage = ghostImage.getScaledInstance(GameConsts.BLOCK_SIZE, GameConsts.BLOCK_SIZE, Image.SCALE_DEFAULT);
     }
+
+    /**
+     * This method starts new thread and randomly chooses Inky's movement.
+     */
     @Override
     public void move(int playerPositionX, int playerPositionY) 
     {
@@ -42,8 +57,17 @@ public class Inky extends Ghost
         thread.start();
     }
     
+    /**
+     * . This class inherits from Thread class to allow multithreading in the program. 
+     */
     private class Threader extends Thread
     {
+        /**
+         * This method sets Inky's posistion based on one of the other three ghosts movement.
+         * 0 - Blinky's movement.
+         * 1 - Clyde's movement.
+         * 2 - Pinky's moement.
+         */
         @Override
         public void run()
         {

@@ -14,6 +14,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * Class with GUI implementation and all the game objects.
+ */
 public class Scene extends GameConsts implements ActionListener
 {
     private JFrame frame;
@@ -27,14 +30,14 @@ public class Scene extends GameConsts implements ActionListener
     private Inky inky;
     private Pinky pinky;
     private Timer timer;
-    private int highestScore;
-    private int score;
-    private int sumScore;     
-    private int lives;
-   
+    private int highestScore, score, sumScore, lives;
     private boolean isRunning;
     private char direction;
 
+    /**
+     * Constructor that loads map layout and reads highest score from the file. 
+     * @throws IOException
+     */
     public Scene() throws IOException
     {
         sumScore = 0;
@@ -46,40 +49,30 @@ public class Scene extends GameConsts implements ActionListener
         file.close();
     }
 
-    public void setScene() 
-    {
-        isRunning = false;
-        
-        setPanels();
-    }
-
+    /**
+     * This method initialize all objects and starts game clock. 
+     * @throws IOException
+     */
     private void startGame()throws IOException
     {
         isRunning = true;
         direction = 'R';
-        timer = new Timer(DELAY, this);
         player = new Player();
         blinky = new Blinky();
         clyde = new Clyde();
         inky = new Inky();
         pinky = new Pinky();
+        timer = new Timer(DELAY, this);
         timer.start();
     }
 
-    private boolean checkCollision()
-    {
-        if(player.getPositionX() == blinky.getPositionX() && player.getPositionY() == blinky.getPositionY()
-        || player.getPositionX() == clyde.getPositionX() && player.getPositionY() == clyde.getPositionY()
-        || player.getPositionX() == inky.getPositionX() && player.getPositionY() == inky.getPositionY()
-        || player.getPositionX() == pinky.getPositionX() && player.getPositionY() == pinky.getPositionY())
-            {
-                return true;
-            }
-        return false;
-    }
 
-    private void setPanels()
+    /**
+     * This method sets all graphical panels on the window.
+     */
+    public void setScene()
     {
+        isRunning = false;  
         scoreLabel = new JLabel();
         scoreLabel.setText("<html>Score: " + Integer.toString(score) +
                            "<br/>Your sum score: " + Integer.toString(sumScore) +
@@ -90,7 +83,6 @@ public class Scene extends GameConsts implements ActionListener
         scorePanel.setPreferredSize(new Dimension(200, 0));
         scorePanel.setBackground(Colors.SCORE_BOARD);
         scorePanel.add(scoreLabel);
-
         mainPanel = new MainPanel();
         mainPanel.setPreferredSize(DIMENSION);
         mainPanel.setBackground(Colors.BACKGROUND);
@@ -107,6 +99,10 @@ public class Scene extends GameConsts implements ActionListener
         frame.setVisible(true);
     }
 
+    /**
+     * This method overrides one of the ActionListener methods that is responsible for
+     * dynamically chaniging positions of the objects on every tick of the game clock.
+     */
     @Override
     public void actionPerformed(ActionEvent e) 
     {
@@ -158,8 +154,31 @@ public class Scene extends GameConsts implements ActionListener
         }
     }
 
+
+    /**
+     * This method checks whether one of the ghosts catched PacMan.
+     * @return
+     */
+    private boolean checkCollision()
+    {
+        if(player.getPositionX() == blinky.getPositionX() && player.getPositionY() == blinky.getPositionY()
+        || player.getPositionX() == clyde.getPositionX() && player.getPositionY() == clyde.getPositionY()
+        || player.getPositionX() == inky.getPositionX() && player.getPositionY() == inky.getPositionY()
+        || player.getPositionX() == pinky.getPositionX() && player.getPositionY() == pinky.getPositionY())
+            {
+                return true;
+            }
+        return false;
+    }
+
+    /**
+     * Object of this class alows to communicate with the user by listening to his typed keys.  
+     */
     private class MyKeyAdapter extends KeyAdapter
     {
+        /**
+         * This method allows user to start the game and move PacMan into desired direction.
+         */
         @Override public void keyPressed(KeyEvent e)
         {
             if(!isRunning && e.getKeyChar() == ' ')
@@ -195,9 +214,15 @@ public class Scene extends GameConsts implements ActionListener
         }
     }
 
-
+    
+    /**
+     * Object of this class allows to draw labels with score, lives and movable objects. 
+     */
     private class MainPanel extends JPanel 
     {   
+        /**
+         * This method is called on every tick of the game clock to provide dynamical gameplay experience.
+         */
         @Override
         public void paint(Graphics graphics) 
         {
