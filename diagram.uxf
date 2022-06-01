@@ -1,0 +1,192 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;702&lt;/x&gt;&lt;y&gt;100&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;160&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Blinky&amp;gt;&amp;gt;
+--
+/+Blinky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- retreatMoves: int
+- chaseOrRetreat: boolean
+- thread: Threader&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;702&lt;/x&gt;&lt;y&gt;90&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;160&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Blinky&amp;gt;&amp;gt;
+--
+/+Blinky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- retreatMoves: int
+- chaseOrRetreat: boolean
+- thread: Threader&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;790&lt;/x&gt;&lt;y&gt;290&lt;/y&gt;&lt;w&gt;130&lt;/w&gt;&lt;h&gt;80&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;&amp;lt;-&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;110;60&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;702&lt;/x&gt;&lt;y&gt;154&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;160&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Blinky&amp;gt;&amp;gt;
+--
+/+Blinky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- retreatMoves: int
+- chaseOrRetreat: boolean
+- thread: Threader&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;270&lt;/x&gt;&lt;y&gt;482&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;30&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;_JPanel_
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;470&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;260&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Ghost&amp;gt;&amp;gt;
+--
+/+paintGhost()/
+/+getPositionX(): int/
+/+getPositionY(): int/
+/+setPositionX(int): void/
+/+setPositionY(int): void/
+/+getImage(): Image/
+/+move(int,int): void/
+/+calculateDistanceToPlayer(int,int): double/
+/+getRandomDirection(int,int): int/
+--
+- x: int
+- y: int
+-playerPositionX: int
+-playerPositionY: int
+-resizedGhostImage: Image
+-ghostImage: BufferedImage
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;30&lt;/x&gt;&lt;y&gt;390&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;50&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;_MyKeyAdapter_
+--
+keyPressed(): void&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;410&lt;/x&gt;&lt;y&gt;40&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;260&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Ghost&amp;gt;&amp;gt;
+--
+/+paintGhost()/
+/+getPositionX(): int/
+/+getPositionY(): int/
+/+setPositionX(int): void/
+/+setPositionY(int): void/
+/+getImage(): Image/
+/+move(int,int): void/
+/+calculateDistanceToPlayer(int,int): double/
+/+getRandomDirection(int,int): int/
+--
+- x: int
+- y: int
+-playerPositionX: int
+-playerPositionY: int
+-resizedGhostImage: Image
+-ghostImage: BufferedImage
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;40&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;230&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;&amp;lt;&amp;lt;Player&amp;gt;&amp;gt;
+PacMan layout 
+--
+/+Player()/
+/+getPositionX(): int/
+/+getPositionY(): int/
+/+setPositionX(int): void/
+/+setPositionY(int): void/
+/+getImage(): Image/
+/+move(char): void/
+--
+- x: int
+- y: int
+-pacManResized: Image
+-pacManImage: BufferedImage
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>40</x><y>58</y><w>190</w><h>220</h></coordinates><panel_attributes>&lt;&lt;Player&gt;&gt;
+PacMan layout 
+--
+/+Player()/
+/+getPositionX(): int/
+/+getPositionY(): int/
+/+setPositionX(int): void/
+/+setPositionY(int): void/
+/+getImage(): Image/
+/+move(char): void/
+--
+- x: int
+- y: int
+-pacManResized: Image
+-pacManImage: BufferedImage
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>118</y><w>190</w><h>260</h></coordinates><panel_attributes>&lt;&lt;Ghost&gt;&gt;
+--
+/+paintGhost()/
+/+getPositionX(): int/
+/+getPositionY(): int/
+/+setPositionX(int): void/
+/+setPositionY(int): void/
+/+getImage(): Image/
+/+move(int,int): void/
+/+calculateDistanceToPlayer(int,int): double/
+/+getRandomDirection(int,int): int/
+--
+- x: int
+- y: int
+-playerPositionX: int
+-playerPositionY: int
+-resizedGhostImage: Image
+-ghostImage: BufferedImage
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>58</y><w>190</w><h>380</h></coordinates><panel_attributes>&lt;&lt;Scene&gt;&gt;
+--
+/+Scene()/
+/+startGame(): void/
+/+setScene(): void/
+/+actionPerformed(): void/
+/+checkCollision(): boolean/
+/+paint(Grafics): void/
+/+keyPressed(): void/
+--
+- frame: JFrame
+- mainPanel: MainPanel 
+- scorePanel: JPanel 
+- scoreLabel: JLabel 
+- player: Player 
+- blinky: Blinky 
+- clyde: Clyde 
+- inky: Inky 
+- pinky: Pinky 
+- timer: Timer 
+- highestScore: int
+- score: int
+- sumScore: int
+- lives: int
+- isRunning: boolean 
+- direction: char 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>318</y><w>210</w><h>30</h></coordinates><panel_attributes>_KeyAdapter_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>380</y><w>210</w><h>30</h></coordinates><panel_attributes>_JPanel_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>328</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>388</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>522</x><y>428</y><w>190</w><h>160</h></coordinates><panel_attributes>&lt;&lt;Blinky&gt;&gt;
+--
+/+Blinky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- retreatMoves: int
+- chaseOrRetreat: boolean
+- thread: Threader</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>238</y><w>80</w><h>30</h></coordinates><panel_attributes>lt=&lt;..</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>178</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;..</panel_attributes><additional_attributes>70;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>54</y><w>210</w><h>30</h></coordinates><panel_attributes>_Thread_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>799</x><y>54</y><w>190</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Clyde&gt;&gt;
+--
+/+Clyde()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- movesInOneDirection: int
+- lastMove: int
+- thread: Threader</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>801</x><y>218</y><w>190</w><h>200</h></coordinates><panel_attributes>&lt;&lt;Inky&gt;&gt;
+--
+/+Inky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- waitMoves: int
+- movementMoves: int
+- randomMovement: int
+- lastMove: int
+- movesInOneDirection: int
+- thread: Threader</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>798</x><y>448</y><w>190</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Pinky&gt;&gt;
+--
+/+Pinky()/
+/+paintGhost(): void/
+/+move(int,int): void/
+/+run(): void/
+--
+- chaseMoves: int
+- waitMoves: int
+- thread: Threader</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>240</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;90;20</additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>150</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;90;20</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>370</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>300</y><w>110</w><h>180</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;40;10;40;160;90;160</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>80</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element></diagram>
